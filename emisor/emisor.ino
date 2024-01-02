@@ -16,12 +16,15 @@ void setup(void)
 {
   pinMode(pinPIR, INPUT);
   radio.begin();
+  Serial.begin(9600);
   radio.openWritingPipe(pipe);
 }
  
 void loop(void)
 {
+  Serial.println(digitalRead(pinPIR));
   if (digitalRead(pinPIR)) {
+    Serial.println("hola");
     radio.write(data, sizeof data);
   }
   delay(500);

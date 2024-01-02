@@ -22,6 +22,7 @@ void setup(void)
   noTone(pinBuzzer);
   
   radio.begin();
+  Serial.begin(9600);
   radio.openReadingPipe(1,pipe);
   radio.startListening();
 }
@@ -29,7 +30,8 @@ void setup(void)
 void loop(void)
 {
   if (radio.available()) {
-    //radio.read(data, sizeof data);
+    radio.read(data, sizeof data);
+    Serial.println(data);
     digitalWrite(pinLED, HIGH);    // LED on
     tone(pinBuzzer, 800);          // buzzer on
   }
